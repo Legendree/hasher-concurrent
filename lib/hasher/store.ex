@@ -9,7 +9,8 @@ defmodule Hasher.Store do
 
   # Server implementation
 
-  def init(initial_words) do
+  def init(path) do
+    initial_words = File.stream!(path, [], :line) |> Enum.map(&String.trim/1)
     {:ok, initial_words}
   end
 

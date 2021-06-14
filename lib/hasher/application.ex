@@ -7,11 +7,14 @@ defmodule Hasher.Application do
 
   @impl true
   def start(_type, _args) do
+    path = Application.get_env(:hasher, :path)
+    worker_count = Application.get_env(:hasher, :worker_count)
+
     children = [
       Hasher.Results,
-      {Hasher.Store, ["helo", "sdasdsa"]},
+      {Hasher.Store, path},
       Hasher.WorkerSupervisor,
-      {Hasher.Manager, 1}
+      {Hasher.Manager, worker_count}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

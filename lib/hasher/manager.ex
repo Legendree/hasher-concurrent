@@ -38,6 +38,7 @@ defmodule Hasher.Manager do
   defp show_results() do
     IO.puts("\n")
     IO.puts("---------------------Results---------------------\n")
+    Results.get() |> Enum.each(&IO.inspect/1)
     IO.puts("Done with #{length(Results.get())} words.")
     IO.puts("\n-------------------------------------------------")
     IO.puts("\n")

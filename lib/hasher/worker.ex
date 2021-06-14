@@ -24,7 +24,7 @@ defmodule Hasher.Worker do
   end
 
   defp hash_word(word) when is_bitstring(word) do
-    result = :crypto.hash(:md5, word)
+    result = :crypto.hash(:md5, word) |> Base.encode16(case: :lower)
     Results.add_result(result)
     send(self(), :get_word_to_hash)
     {:noreply, nil}

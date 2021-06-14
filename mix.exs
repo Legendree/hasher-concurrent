@@ -15,6 +15,7 @@ defmodule Hasher.MixProject do
   def application do
     [
       extra_applications: [:logger, :crypto],
+      env: [path: "words/list", worker_count: 10],
       mod: {Hasher.Application, []}
     ]
   end
